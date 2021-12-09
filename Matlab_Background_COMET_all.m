@@ -15,6 +15,28 @@ addpath(genpath(folder));
 
 [~, mid_air] = xlsread('COMET_BG_30xluchtledige_measurements_02-12-2021_09;59;50.xlsx');
 
+%% Temperaturen sensoren 
+% --> maakt niet het verschil tussen fiber straight en mid air!
+temp_skinMM = skinMM(9,2:size(skinMM,2));
+temp_skinMM = cellfun(@str2num, temp_skinMM);
+mean_temp_skinMM = mean(temp_skinMM); % 29.5 graden
+
+temp_skinMS = skinMS(9,2:size(skinMS,2));
+temp_skinMS = cellfun(@str2num, temp_skinMS);
+mean_temp_skinMS = mean(temp_skinMS); % 31.4 graden
+
+temp_fiber_straight = fiber_straight(9,2:size(fiber_straight, 2));
+temp_fiber_straight = cellfun(@str2num, temp_fiber_straight);
+mean_temp_fiber_straight = mean(temp_fiber_straight); % 25.6 graden
+
+temp_fiber_bent = fiber_bent(9,2:size(fiber_bent, 2));
+temp_fiber_bent = cellfun(@str2num, temp_fiber_bent);
+mean_temp_fiber_bent = mean(temp_fiber_bent); % 26.4 graden
+
+temp_mid_air = mid_air(9,2:size(mid_air, 2));
+temp_mid_air = cellfun(@str2num, temp_mid_air);
+mean_temp_mid_air = mean(temp_mid_air); % 25.2 graden
+
 %% COMET background measurement 2 Hz without pressure on skin MM
 Parameters = skinMM(:,1);
 MM_2Hz_NoPress = skinMM(:,2:31);
