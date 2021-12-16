@@ -71,3 +71,33 @@ figure(3)
 plot(samples, mean_fiber_straight_raw_1Hz, samples, mean_fiber_bent_raw_1Hz)
 legend('straight fiber','bent fiber')
 title('straight vs. bent fiber sampled at 1Hz')
+
+%% Fiber and straight bent correction and normalization
+% Defining x and y
+x = (samples(20:size(samples, 2))-20)';
+y_fiber_straight = mean_fiber_straight_raw_1Hz(20:size(mean_fiber_straight_raw_1Hz, 1));
+y_fiber_bent = mean_fiber_bent_raw_1Hz(20:size(mean_fiber_bent_raw_1Hz, 1));
+
+% Implementing correction
+mean_correct = mean(y_fiber_straight(end-4:end));
+y_fiber_straight_correct = y_fiber_straight - mean_correct;
+
+mean_correct = mean(y_fiber_bent(end-4:end));
+y_fiber_bent_correct = y_fiber_bent - mean_correct;
+
+% Normalizing 
+max_y_fiber_straight_correct = max(y_fiber_straight_correct)
+y_fiber_straight_correct_norm = y_fiber_straight_correct / max_y_fiber_straight_correct;
+
+max_y_fiber_bent_correct = max(y_fiber_bent_correct)
+y_fiber_bent_correct_norm = y_fiber_bent_correct / max_y_fiber_bent_correct;
+
+norm_fiber_straight = y_fiber_straight_correct_norm
+norm_fiber_bent = y_fiber_bent_correct_norm
+
+%% Comparing mean of straight and bent fiber at 1Hz
+figure(6)
+plot(x, norm_fiber_straight, x, norm_fiber_bent)
+legend('straight fiber','bent fiber')
+title('straight vs. bent fiber sampled at 1Hz')
+ylim([0 1])

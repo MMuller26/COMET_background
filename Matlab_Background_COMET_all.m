@@ -15,6 +15,9 @@ addpath(genpath(folder));
 
 [~, mid_air] = xlsread('COMET_BG_30xluchtledige_measurements_02-12-2021_09;59;50.xlsx');
 
+filename = "20211123_avg_monoExp+BG27-47"; % in LV gemaakt. BG OL exp.2021-05 HR
+BGall = importdata(filename);
+old_laser = BGall(40:size(BGall,2));
 %% Temperaturen sensoren 
 % --> maakt niet het verschil tussen fiber straight en mid air!
 temp_skinMM = skinMM(9,2:size(skinMM,2));
@@ -224,24 +227,86 @@ plot(samples, mean_mid_air_raw_1Hz, '-g', 'LineWidth', 2)
 hold off
     %fprintf('%d\n',round(mean_mid_air_raw_1Hz(:,1)));
 
+%% Mid-air correction and normalization
+% Defining x and y
+x = (samples(20:size(samples, 2))-20)';
+y_mid_air = mean_mid_air_raw_1Hz(20:size(mean_mid_air_raw_1Hz, 1)); 
+
+% Implementing correction
+mean_correct = mean(y_mid_air(end-4:end));
+y_mid_air_correct = y_mid_air - mean_correct;
+
+% Normalizing 
+max_y_mid_air_correct = max(y_mid_air_correct)
+y_mid_air_correct_norm = y_mid_air_correct / max_y_mid_air_correct;
+
+norm_mid_air = y_mid_air_correct_norm
+
+%% Fiber and straight bent correction and normalization
+y_fiber_straight = mean_fiber_straight_raw_1Hz(20:size(mean_fiber_straight_raw_1Hz, 1));
+y_fiber_bent = mean_fiber_bent_raw_1Hz(20:size(mean_fiber_bent_raw_1Hz, 1));
+
+% Implementing correction
+mean_correct = mean(y_fiber_straight(end-4:end));
+y_fiber_straight_correct = y_fiber_straight - mean_correct;
+
+mean_correct = mean(y_fiber_bent(end-4:end));
+y_fiber_bent_correct = y_fiber_bent - mean_correct;
+
+% Normalizing 
+max_y_fiber_straight_correct = max(y_fiber_straight_correct)
+y_fiber_straight_correct_norm = y_fiber_straight_correct / max_y_fiber_straight_correct;
+
+max_y_fiber_bent_correct = max(y_fiber_bent_correct)
+y_fiber_bent_correct_norm = y_fiber_bent_correct / max_y_fiber_bent_correct;
+
+norm_fiber_straight = y_fiber_straight_correct_norm
+norm_fiber_bent = y_fiber_bent_correct_norm
+
+%% skin 2Hz correction and normalization
+% Defining x and y
+y_MM_2Hz = mean_MM_raw_2Hz_NoPress(20:size(mean_MM_raw_2Hz_NoPress, 1));
+
+% Implementing correction
+mean_correct = mean(y_MM_2Hz(end-4:end));
+y_MM_2Hz_correct = y_MM_2Hz - mean_correct;
+
+% Normalizing 
+max_y_MM_2Hz_correct = max(y_MM_2Hz_correct)
+y_MM_2Hz_correct_norm = y_MM_2Hz_correct / max_y_MM_2Hz_correct;
+
+norm_skin_2Hz = y_MM_2Hz_correct_norm;
+
+%% Old laser PBS correction and normalization
+
+norm_old_laser = old_laser/max(old_laser);
+
 %% Comparing mean of background mid-air 1Hz vs. straight fiber 1Hz measurement
 
 figure(9)
-plot(samples, mean_mid_air_raw_1Hz, samples, mean_fiber_straight_raw_1Hz)
+plot(x, norm_mid_air, x, norm_fiber_straight)
 legend('mid-air','straight fiber')
 title('1Hz mid-air vs. 1Hz straight fiber measurement')
-
+ylim([0 1])
 %% Comparing mean of background MM skin 2Hz without pressure vs. straight fiber 1Hz measurement
 
 figure(10)
-plot(samples, mean_MM_raw_2Hz_NoPress, samples, mean_fiber_straight_raw_1Hz)
+plot(x, norm_skin_2Hz, x, norm_fiber_straight)
 legend('MM skin NoPress','straight fiber')
 title('2Hz skin NoPress vs. 1Hz straight fiber measurement')
-
+ylim([0 1])
 %% Comparing mean of background MM skin 2Hz without pressure vs. bent fiber 1Hz measurement
 
 figure(11)
-plot(samples, mean_MM_raw_2Hz_NoPress, samples, mean_fiber_bent_raw_1Hz)
+plot(x, norm_skin_2Hz, x, norm_fiber_bent)
 legend('MM skin NoPress','bent fiber')
 title('2Hz skin NoPress vs. 1Hz bent fiber measurement')
-
+ylim([0 1])
+%% Comparison mean background MM skin 2Hz without pressure vs. mid-air 1Hz vs. old laser PBS wells measurement 
+figure(12)
+plot(x(1:1883, 1), norm_skin_2Hz(1:1883,1))
+hold on
+plot(x(1:1883, 1), norm_mid_air(1:1883,1))
+plot(x(1:1883, 1), norm_old_laser')
+legend('comet-skin', 'comet-mid-air', 'old laser-pbs')
+title('normalized comet skin, comet mid-air and old-laser pbs measurements')
