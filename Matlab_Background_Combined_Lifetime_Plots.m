@@ -122,7 +122,17 @@ bars = [RMSE_mid_air_10 RMSE_skin_10 RMSE_OL_10; RMSE_mid_air_20 RMSE_skin_20 RM
 
 figure(6)
 bar(background, bars)
-legend('mid-air', 'skin', 'old laser')
+legend('CMT mid-air', 'CMT skin', 'old laser PBS')
 xlabel('percentage of background signal')
 ylabel('RMSE predicted vs. input lifetime')
 title('RMSE of predicted vs. input lifetime for different setups and percentages of background signal')
+
+prc10 = [RMSE_mid_air_10, RMSE_skin_10, RMSE_OL_10]';
+prc20 = [RMSE_mid_air_20, RMSE_skin_20, RMSE_OL_20]';
+prc30 = [RMSE_mid_air_30, RMSE_skin_30, RMSE_OL_30]';
+prc40 = [RMSE_mid_air_40, RMSE_skin_40, RMSE_OL_40]';
+prc50 = [RMSE_mid_air_50, RMSE_skin_50, RMSE_OL_50]';
+
+T = table({'CMT mid-air', 'CMT skin', 'old laser PBS'}', prc10, prc20, prc30, prc40, prc50)
+T.Properties.VariableNames = {'RMSE with background %', '10%', '20%', '30%', '40%', '50%'}
+
