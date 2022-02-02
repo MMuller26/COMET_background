@@ -93,22 +93,29 @@ for lifetimeNumber = [1:1:size(lifetime_in,2)]
     lifetime_OL_input(lifetimeNumber) = lifetime_input;
 end
 
+%% lifetime to PO2
+PO2_OL_out =NaN(1, length(PO2_in));
+for k = 1:length(PO2_in)
+    PO2_OL_out(k) = (1/lifetime_OL_new(k) - 1/tauT0)/kq; 
+end
+
+%% plotting 
 figure(5)
 plot(lifetime_OL_input, lifetime_OL_new, '-O')
 xlabel('input lifetime')
 ylabel('new lifetime')
 xlim([0 200])
 ylim([0 200])
-title('new vs. input lifetimes for 50% background old laser')
+title('new vs. input lifetimes for 10% background old laser')
 grid on
 
 figure(6)
-loglog(lifetime_OL_input, lifetime_OL_new, '-O')
-xlabel('input lifetime')
-ylabel('new lifetime')
-title('new vs. input lifetimes for 50% background old laser')
-xlim([0 200])
-ylim([0 200])
+plot(PO2_in, PO2_OL_out, '-O')
+xlabel('input mitoPO2')
+ylabel('new mitoPO2')
+title('new vs. input PO2 for 0% background old laser')
+xlim([0 250])
+ylim([0 250])
 grid on
 
 % x=[1,2,4,6,8]';

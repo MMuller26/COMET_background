@@ -8,7 +8,7 @@ folder = fileparts(which(mfilename));
 addpath(genpath(folder));
 
 [~, skinMM] = xlsread('HuidMM_30xaanlsuitend_15xPauze10sfZonderdruk_15xPauze10sMetdruk_measurements_02-12-2021_10;20;09.xlsx'); 
-percBG=0.1;% Percentage of BG in simulatied signal
+percBG=0.5;% Percentage of BG in simulatied signal
 
 %% COMET background measurement 2 Hz without pressure on skin MM
 MM_2Hz_NoPress = skinMM(:,2:31);
@@ -135,6 +135,13 @@ for lifetimeNumber = [1:1:size(lifetime_in,2)]
     lifetime_skin_2Hz_input(lifetimeNumber) = lifetime_input;
 end
 
+%% lifetime to PO2
+PO2_skin_out =NaN(1, length(PO2_in));
+for k = 1:length(PO2_in)
+    PO2_skin_out(k) = (1/lifetime_skin_2Hz_new(k) - 1/tauT0)/kq; 
+end
+
+%% plotting
 figure(7)
 plot(lifetime_skin_2Hz_input, lifetime_skin_2Hz_new, '-O')
 xlabel('input lifetime')
@@ -145,10 +152,10 @@ title('new vs. input lifetimes for 10% background skin 2Hz')
 grid on
 
 figure(8)
-loglog(lifetime_skin_2Hz_input, lifetime_skin_2Hz_new, '-O')
-xlabel('input lifetime')
-ylabel('new lifetime')
-xlim([0 200])
-ylim([0 200])
-title('new vs. input lifetimes for 10% background skin 2Hz')
+plot(PO2_in, PO2_skin_out, '-O')
+xlabel('input PO2')
+ylabel('new PO2')
+xlim([0 250])
+ylim([0 250])
+title('new vs. input PO2 for 10% background skin 2Hz')
 grid on

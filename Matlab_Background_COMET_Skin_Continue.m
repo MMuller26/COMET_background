@@ -49,6 +49,7 @@ samples = [1:1:length(continu_MM_raw)];
 %% Plotting background over time MM
 x = (samples(20:size(samples, 2))-20)';
 RMSE_continu_MM_total = zeros(1,size(continu_MM_avg, 2));
+RMSE_continu_MM_PO2_total = zeros(1,size(continu_MM_avg, 2));
 
 for i = 1:1:size(continu_MM_avg, 2)
 
@@ -128,6 +129,13 @@ for i = 1:1:size(continu_MM_avg, 2)
         lifetime_continu_MM_input(lifetimeNumber) = lifetime_input;
     end
 
+    % lifetime to PO2
+    PO2_continu_MM_out = NaN(1, length(PO2_in));
+    for m = 1:length(PO2_in)
+        PO2_continu_MM_out(m) = (1/lifetime_continu_MM_new(m) - 1/tauT0)/kq; 
+    end
+    
+    % plotten
     figure(2)
     plot(lifetime_continu_MM_input, lifetime_continu_MM_new, '-O')
     xlabel('input lifetime')
@@ -140,19 +148,22 @@ for i = 1:1:size(continu_MM_avg, 2)
     hold on
 
     figure(3)
-    loglog(lifetime_continu_MM_input, lifetime_continu_MM_new, '-O')
-    xlabel('input lifetime')
-    ylabel('new lifetime')
-    title('new vs. input lifetimes for 90% background last continues measurements MM')
+    plot(PO2_in, PO2_continu_MM_out, '-O')
+    xlabel('input PO2')
+    ylabel('new PO2')
+    title('new vs. input PO2 for 90% background last continues measurements MM')
     grid on
-    xlim([0 200])
-    ylim([0 200])
+    xlim([0 250])
+    ylim([0 250])
     legend
     hold on
     
     % calculating root mean squared error 
     RMSE_continu_MM = sqrt(mean((lifetime_continu_MM_new-lifetime_continu_MM_input).^2));
     RMSE_continu_MM_total(i) = RMSE_continu_MM;
+
+    RMSE_continu_MM_PO2 = sqrt(mean((PO2_continu_MM_out-PO2_in).^2));
+    RMSE_continu_MM_PO2_total(i) = RMSE_continu_MM_PO2;
 end
 
 % %% bar graph of RMSE continues MM
@@ -165,6 +176,7 @@ end
 
 %% Plotting background over time MS
 RMSE_continu_MS_total = zeros(1, size(continu_MS_avg, 2));
+RMSE_continu_MS_PO2_total = zeros(1, size(continu_MS_avg, 2));
 
 for i = 1:1:size(continu_MS_avg, 2)
         
@@ -243,7 +255,14 @@ for i = 1:1:size(continu_MS_avg, 2)
         lifetime_input = lifetime_in(lifetimeNumber);
         lifetime_continu_MS_input(lifetimeNumber) = lifetime_input;
     end
+    
+    % lifetime to PO2
+    PO2_continu_MS_out = NaN(1, length(PO2_in));
+    for m = 1:length(PO2_in)
+        PO2_continu_MS_out(m) = (1/lifetime_continu_MS_new(m) - 1/tauT0)/kq; 
+    end
 
+    %plotten
     figure(6)
     plot(lifetime_continu_MS_input, lifetime_continu_MS_new, '-O')
     xlabel('input lifetime')
@@ -256,19 +275,22 @@ for i = 1:1:size(continu_MS_avg, 2)
     hold on
 
     figure(7)
-    loglog(lifetime_continu_MS_input, lifetime_continu_MS_new, '-O')
-    xlabel('input lifetime')
-    ylabel('new lifetime')
-    title('new vs. input lifetimes for 90% background last continues measurements MS')
+    loglog(PO2_in, PO2_continu_MS_out, '-O')
+    xlabel('input PO2')
+    ylabel('new PO2')
+    title('new vs. input PO2 for 90% background last continues measurements MS')
     grid on
-    xlim([0 200])
-    ylim([0 200])
+    xlim([0 250])
+    ylim([0 250])
     legend
     hold on
     
     % calculating root mean squared error 
     RMSE_continu_MS = sqrt(mean((lifetime_continu_MS_new-lifetime_continu_MS_input).^2));
     RMSE_continu_MS_total(i) = RMSE_continu_MS;
+    
+    RMSE_continu_MS_PO2 = sqrt(mean((PO2_continu_MS_out-PO2_in).^2));
+    RMSE_continu_MS_PO2_total(i) = RMSE_continu_MS_PO2;
 end
 
 % %% bar graph of RMSE continues MS
@@ -291,3 +313,12 @@ legend('MS', 'MM')
 ylabel('RMSE')
 xlabel('time passed in minutes')
 title('RMSE for prediction vs. input lifetime over time 90% background')
+
+figure(10)
+plot(time, RMSE_continu_MS_PO2_total)
+hold on
+plot(time, RMSE_continu_MM_PO2_total)
+legend('MS', 'MM')
+ylabel('RMSE')
+xlabel('time passed in minutes')
+title('RMSE for prediction vs. input PO2 over time 90% background')

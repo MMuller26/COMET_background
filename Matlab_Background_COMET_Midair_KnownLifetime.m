@@ -8,7 +8,7 @@ folder = fileparts(which(mfilename));
 addpath(genpath(folder));
 
 [~, mid_air] = xlsread('COMET_BG_30xluchtledige_measurements_02-12-2021_09;59;50.xlsx');
-percBG=0.5; % Percentage of BG in simulatied signal
+percBG=0; % Percentage of BG in simulatied signal
 
 %% Data processing mid-air measurement
 % selecting the parameter column
@@ -138,6 +138,13 @@ for lifetimeNumber = [1:1:size(lifetime_in,2)]
     lifetime_mid_air_input(lifetimeNumber) = lifetime_input;
 end
 
+%% lifetime to PO2
+PO2_mid_air_out =NaN(1, length(PO2_in));
+for k = 1:length(PO2_in)
+    PO2_mid_air_out(k) = (1/lifetime_mid_air_new(k) - 1/tauT0)/kq; 
+end
+
+%% plotten
 figure(7)
 plot(lifetime_mid_air_input, lifetime_mid_air_new, '-O')
 xlabel('input lifetime')
@@ -148,10 +155,10 @@ title('new vs. input lifetimes for 50% background mid-air')
 grid on
 
 figure(8)
-loglog(lifetime_mid_air_input, lifetime_mid_air_new, '-O')
-xlabel('input lifetime')
-ylabel('new lifetime')
-xlim([0 200])
-ylim([0 200])
-title('new vs. input lifetimes for 50% background mid-air')
+plot(PO2_in, PO2_mid_air_out, '-O')
+xlabel('input PO2')
+ylabel('new PO2')
+xlim([0 250])
+ylim([0 250])
+title('new vs. input PO2 for 50% background mid-air')
 grid on
