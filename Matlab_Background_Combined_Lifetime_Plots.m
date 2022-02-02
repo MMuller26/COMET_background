@@ -3,7 +3,7 @@ close all
 clear all
 clc
 
-%% mid-air backgrounds
+%% mid-air backgrounds lifetimes
 load('mid_air_10_background.mat')
 load('lifetime_in.mat')
 
@@ -35,7 +35,7 @@ xlim([0 200])
 ylim([0 200])
 title('new vs. input lifetime for 10-50% background COMET mid-air')
 
-%% skin backgrounds
+%% skin backgrounds lifetimes
 load('skin_10_background.mat')
 skin_10 = lifetime_skin_2Hz_new;
 RMSE_skin_10 = sqrt(mean((skin_10-lifetime_in).^2));
@@ -65,7 +65,7 @@ xlim([0 200])
 ylim([0 200])
 title('new vs. input lifetime for 10-50% background COMET skin')
 
-%% old laser backgrounds
+%% old laser backgrounds lifetimes
 load('OL_10_background.mat')
 OL_10 = lifetime_OL_new;
 RMSE_OL_10 = sqrt(mean((OL_10-lifetime_in).^2));
@@ -115,7 +115,7 @@ xlim([0 200])
 ylim([0 200])
 title('new vs. input lifetime for 3 backgrounds of 50%')
 
-%% Barchart of RMSE of different set-ups
+%% Barchart of RMSE of different set-ups lifetimes
 
 background = categorical({'10%'; '20%'; '30%'; '40%'; '50%'});
 bars = [RMSE_mid_air_10 RMSE_skin_10 RMSE_OL_10; RMSE_mid_air_20 RMSE_skin_20 RMSE_OL_20; RMSE_mid_air_30 RMSE_skin_30 RMSE_OL_30; RMSE_mid_air_40 RMSE_skin_40 RMSE_OL_40; RMSE_mid_air_50 RMSE_skin_50 RMSE_OL_50];
