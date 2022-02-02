@@ -128,6 +128,7 @@ for lifetimeNumber = [1:1:size(lifetime_in,2)]
     figure(6)
     plot(fitCurve, x, y)
     title('fit on combined signal')
+    xlabel('samples')
     
     % determining lifetime
     lifetime_mid_air = coeffvalues(fitCurve);
