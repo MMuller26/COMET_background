@@ -1,14 +1,17 @@
-%% Mid-air background COMET + known lifetime
+%% COMET background effect simulation logarithmic approach
+% 2 feb 2022 - Myrte Schoenmakers & Marjolein Muller
+% Simulate influence of background signal on "DF-signal" -> created as mono-exponent
+
 clear all
 close all
 clc
 
-%% Input values
+%% Loading files:
 folder = fileparts(which(mfilename)); 
 addpath(genpath(folder));
 
 [~, mid_air] = xlsread('COMET_BG_30xluchtledige_measurements_02-12-2021_09;59;50.xlsx');
-percBG=0; % Percentage of BG in simulatied signal
+percBG=0.5; % Percentage of BG in simulatied signal
 
 %% Data processing mid-air measurement
 % selecting the parameter column
@@ -39,6 +42,7 @@ plot(samples, mean_mid_air_raw_1Hz, '-g', 'LineWidth', 2)
 hold off
     %fprintf('%d\n',round(mean_mid_air_raw_1Hz(:,1)));
 
+%% Mid-air correction and normalization
 % Defining x and y
 x = (samples(20:size(samples, 2))-20)';
 y_mid_air = mean_mid_air_raw_1Hz(20:size(mean_mid_air_raw_1Hz, 1)); 
@@ -51,6 +55,8 @@ y_mid_air_correct = y_mid_air - mean_correct;
 max_y_mid_air_correct = max(y_mid_air_correct)
 y_mid_air_correct_norm = y_mid_air_correct / max_y_mid_air_correct;
 
+norm_mid_air = y_mid_air_correct_norm;
+
 figure(2)
 plot(x,y_mid_air_correct_norm)
 title('corrected and normalized mean mid-air COMET background measurement')
@@ -59,7 +65,8 @@ ylim([0 1])
 %% changing name to BG
 BGstart = (y_mid_air_correct_norm');
 
-%% From PO2 to lifetime 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Start simulation -- Create PO2 list and it convert to lifetimes
 % %% Stern-Volmer
     % SV_eq_PO2 = (1/tauT1 - 1/tauT0)/kq; %Calculate PO2 based on lifetime
     % SV_eq_tauT1 = tauT0/(PO2*kg+1); %Calculate lifetime based on PO2
@@ -99,6 +106,7 @@ plot(samples, monoExp(1,:),samples,monoExp(2,:),samples,monoExp(3,:),samples,mon
 title('Mono-exponents based on lifetime_in' )
 xlabel('Samples')
 
+
 %% Combine lifetime & Background (BG)
  % Scaling mono-exponent - BG
 percMonoExp=1-percBG; % %-monoExp in simulated signal
@@ -108,57 +116,67 @@ for i = 1:size(monoExp,1)
    signal(i,:) = percBG*BGstart+percMonoExp*monoExp(i,:);
 end
  % Plot an example
-aLifetime=5; % random number to get an example
+aLifetime=1; % random number to get an example
     figure(5)
     plot(samples,monoExp(aLifetime,:),'g',samples,BGstart,'b', samples,signal(aLifetime,:),'r')
     legend('monoExp', 'BGstart', 'Signal')
     title('MonoExp + BG + signal')
     ylim([0 1])
-
-%% From mono-exp+BG to -> lifetime and PO2
-lifetime_mid_air_new = zeros(1,size(lifetime_in,2));
-lifetime_mid_air_input = zeros(1,size(lifetime_in,2));
-
-for lifetimeNumber = [1:1:size(lifetime_in,2)]
-    fitType=fittype('exp(-c*x)') ;
-    x=samples';
-    y= signal(lifetimeNumber,:)';
-    fitCurve= fit(x,y,fitType,'StartPoint',[1/lifetime_in(lifetimeNumber)]);
-
-    figure(6)
-    plot(fitCurve, x, y)
-    title('fit on combined signal')
-    xlabel('samples')
     
-    % determining lifetime
-    lifetime_mid_air = coeffvalues(fitCurve);
-    lifetime_mid_air_new(lifetimeNumber) = 1/lifetime_mid_air(1);
+%% Change mono-exponent to logarithmic scale
+lifetime_mid_air_out = zeros(1,size(lifetime_in,2));
+lifetime_mid_air_in = zeros(1,size(lifetime_in,2));
+lnSignal=NaN(size(monoExp));
+
+for lifetimeNumber = 1:1:size(monoExp,1)
+    lnSignal(lifetimeNumber,:)=log(monoExp(lifetimeNumber,:));
+end
+
+figure(6)
+subplot(2,1,1)
+plot(samples, signal(1,:), samples, monoExp(1,:), samples, BGstart)
+legend('signal','monoExp', 'BGS')
+title('Example of a signal combined from the shown monoExp and BGS' )
+subplot(2,1,2)
+plot(samples, lnSignal(1,:))
+title('Example of ln of the signal shown above')
+
+%% Fit to lnSignal
+lifetime_out=NaN(1,size(lnSignal,1));
+
+for i = 1:1:size(lnSignal,1)
+    c = polyfit(samples,lnSignal(i,:),1);
+    linFit=polyval(c,samples);
     
-    lifetime_input = lifetime_in(lifetimeNumber);
-    lifetime_mid_air_input(lifetimeNumber) = lifetime_input;
+    figure(7)
+    plot(samples,linFit,samples,lnSignal(i,:))
+    legend('linear fit' , 'Combined signal')
+    
+    lifetime_out(i)=-1/c(1);
 end
 
 %% lifetime to PO2
 PO2_mid_air_out =NaN(1, length(PO2_in));
 for k = 1:length(PO2_in)
-    PO2_mid_air_out(k) = (1/lifetime_mid_air_new(k) - 1/tauT0)/kq; 
+    PO2_mid_air_out(k) = (1/lifetime_in(k) - 1/tauT0)/kq; 
 end
 
-%% plotten
-figure(7)
-plot(lifetime_mid_air_input, lifetime_mid_air_new, '-O')
-xlabel('input lifetime')
-ylabel('new lifetime')
+%% Compare lifetime_in with lifetime_out (and for PO2)
+figure(100)
+plot(lifetime_in, lifetime_out, '-O')
+xlabel('Lifetime in')
+ylabel('Lifetime out')
 xlim([0 200])
 ylim([0 200])
-title('new vs. input lifetimes for 50% background mid-air')
+title('lifetime in vs. out for 0% background mid-air')
 grid on
 
-figure(8)
+figure(101)
 plot(PO2_in, PO2_mid_air_out, '-O')
-xlabel('input PO2')
-ylabel('new PO2')
+xlabel('PO2 in')
+ylabel('PO2 out')
 xlim([0 250])
 ylim([0 250])
-title('new vs. input PO2 for 50% background mid-air')
+title('PO2 in vs. out for 0% background mid-air')
 grid on
+
