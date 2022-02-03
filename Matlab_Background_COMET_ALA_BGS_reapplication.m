@@ -79,25 +79,44 @@ mean_MM_BGS_5 = mean(MM_BGS_5(49:end, :), 2);
 % defining amount of samples
 samples = [1:1:length(MM_Pleister5_4uur(49:end, :))];
 
+% determining median mitoPO2
+max_MM_Pleister5_4uur = median(MM_Pleister5_4uur(49,:));
+max_MM_Pleister6_5uur = median(MM_Pleister6_5uur(49,:));
+max_MM_Pleister7_6uur = median(MM_Pleister7_6uur(49,:));
+max_MM_Pleister8_7uur = median(MM_Pleister8_7uur(49,:));
+max_MM_Pleister9_8uur = median(MM_Pleister9_8uur(49,:));
+max_MM_Pleister10_9uur = median(MM_Pleister10_9uur(49,:));
+max_MM_Pleister11_10uur = median(MM_Pleister11_10uur(49,:));
+
+max_MM_Pleister2_13uur = median(MM_Pleister2_13uur(49,:));
+max_MM_Pleister3_14uur = median(MM_Pleister3_14uur(49,:));
+max_MM_Pleister4_15uur = median(MM_Pleister4_15uur(49,:));
+
+max_MM_Pleister3_16uur = median(MM_Pleister3_16uur(49,:));
+max_MM_Pleister4_17uur = median(MM_Pleister4_17uur(49,:));
+
+max_MM_Pleister3_18uur = median(MM_Pleister3_18uur(49,:));
+max_MM_Pleister4_19uur = median(MM_Pleister4_19uur(49,:));
+
 mean_MM_BGS_25 = mean([mean_MM_BGS_2(1) mean_MM_BGS_3(1)]);
 mean_MM_BGS_35 = mean([mean_MM_BGS_3(1) mean_MM_BGS_4(1)]);
 mean_MM_BGS_45 = mean([mean_MM_BGS_4(1) mean_MM_BGS_5(1)]);
 
 %% Barchart met verschil amplitude BGS en ALA afhankelijk van hoelang erop geplakt (re-application only) MM
 
-total_ALA_MM = [0 MM_Pleister5_4uur(49,1) MM_Pleister6_5uur(49,1) MM_Pleister7_6uur(49,1) MM_Pleister8_7uur(49,1) MM_Pleister9_8uur(49,1) MM_Pleister10_9uur(49,1) MM_Pleister11_10uur(49,1) 0 0 MM_Pleister2_13uur(49,1) MM_Pleister3_14uur(49,1)];
-total_BGS_MM = [0 mean_MM_BGS_25 mean_MM_BGS_3(1) mean_MM_BGS_35 mean_MM_BGS_4(1) mean_MM_BGS_45 mean_MM_BGS_5(1) mean_MM_BGS_5(1) 0 0 mean_MM_BGS_25 mean_MM_BGS_3(1)];
+total_ALA_MM = [0 max_MM_Pleister5_4uur max_MM_Pleister6_5uur max_MM_Pleister7_6uur max_MM_Pleister8_7uur max_MM_Pleister9_8uur max_MM_Pleister10_9uur max_MM_Pleister11_10uur 0 0 max_MM_Pleister2_13uur max_MM_Pleister3_14uur max_MM_Pleister4_15uur max_MM_Pleister3_16uur max_MM_Pleister4_17uur max_MM_Pleister3_18uur max_MM_Pleister4_19uur];
+total_BGS_MM = [0 mean_MM_BGS_25 mean_MM_BGS_3(1) mean_MM_BGS_35 mean_MM_BGS_4(1) mean_MM_BGS_45 mean_MM_BGS_5(1) mean_MM_BGS_5(1) 0 0 mean_MM_BGS_25 mean_MM_BGS_3(1) mean_MM_BGS_35 mean_MM_BGS_4(1) mean_MM_BGS_45 mean_MM_BGS_5(1) mean_MM_BGS_5(1)];
 
-X = categorical({'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'});
-X = reordercats(X,{'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'});
+X = categorical({'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'; '15 uur*'; '16 uur'; '17 uur*';'18 uur';'19 uur*'});
+X = reordercats(X,{'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'; '15 uur*'; '16 uur'; '17 uur*';'18 uur';'19 uur*'});
 
 figure(1)
 b = bar(X, [total_ALA_MM' total_BGS_MM'], 0.8)
-ylim([0 70000])
+ylim([0 50000])
 ylabel('amplitude')
-xlabel('time after APA application (re-applied)')
-legend('measured APA signal', 'measured BG signal')
-title('Maximum amplitude APA vs. BG measurements re-applied only MM')
+xlabel('time after ALA application (re-applied)')
+legend('measured ALA signal', 'measured BG signal')
+title('Maximum amplitude ALA vs. BG measurements re-applied only MM')
 
 %% Reading in files MS % naam niet veranderd om tijd te besparen
 
@@ -123,7 +142,7 @@ title('Maximum amplitude APA vs. BG measurements re-applied only MM')
 
 Parameters = MM_Pleister5_4uur(:,1);
 
-% Background
+%Background
 [~, MM_BGS_2] = xlsread('measurements_27-01-2022_10;12;52.xlsx'); 
 [~, MM_BGS_3] = xlsread('measurements_27-01-2022_11;33;54.xlsx'); 
 [~, MM_BGS_4] = xlsread('measurements_27-01-2022_13;38;26.xlsx'); 
@@ -150,7 +169,7 @@ MM_Pleister4_17uur = cellfun(@str2num, MM_Pleister4_17uur(7:end,2:end));
 MM_Pleister3_18uur = cellfun(@str2num, MM_Pleister3_18uur(7:end,2:end));
 MM_Pleister4_19uur = cellfun(@str2num, MM_Pleister4_19uur(7:end,2:end));
 
-% Background
+%Background
 MM_BGS_2 = cellfun(@str2num, MM_BGS_2(7:end, 2:end));
 MM_BGS_3 = cellfun(@str2num, MM_BGS_3(7:end, 2:end));
 MM_BGS_4 = cellfun(@str2num, MM_BGS_4(7:end, 2:end));
@@ -162,26 +181,45 @@ mean_MM_BGS_3 = mean(MM_BGS_3(49:end, :), 2);
 mean_MM_BGS_4 = mean(MM_BGS_4(49:end, :), 2);
 mean_MM_BGS_5 = mean(MM_BGS_5(49:end, :), 2);
 
-% defining amount of samples
+%defining amount of samples
 samples = [1:1:length(MM_Pleister5_4uur(49:end, :))];
+
+% determining median mitoPO2
+max_MM_Pleister5_4uur = median(MM_Pleister5_4uur(49,:));
+max_MM_Pleister6_5uur = median(MM_Pleister6_5uur(49,:));
+max_MM_Pleister7_6uur = median(MM_Pleister7_6uur(49,:));
+max_MM_Pleister8_7uur = median(MM_Pleister8_7uur(49,:));
+max_MM_Pleister9_8uur = median(MM_Pleister9_8uur(49,:));
+max_MM_Pleister10_9uur = median(MM_Pleister10_9uur(49,:));
+max_MM_Pleister11_10uur = median(MM_Pleister11_10uur(49,:));
+
+max_MM_Pleister2_13uur = median(MM_Pleister2_13uur(49,:));
+max_MM_Pleister3_14uur = median(MM_Pleister3_14uur(49,:));
+max_MM_Pleister4_15uur = median(MM_Pleister4_15uur(49,:));
+
+max_MM_Pleister3_16uur = median(MM_Pleister3_16uur(49,:));
+max_MM_Pleister4_17uur = median(MM_Pleister4_17uur(49,:));
+
+max_MM_Pleister3_18uur = median(MM_Pleister3_18uur(49,:));
+max_MM_Pleister4_19uur = median(MM_Pleister4_19uur(49,:));
 
 mean_MM_BGS_25 = mean([mean_MM_BGS_2(1) mean_MM_BGS_3(1)]);
 mean_MM_BGS_35 = mean([mean_MM_BGS_3(1) mean_MM_BGS_4(1)]);
 mean_MM_BGS_45 = mean([mean_MM_BGS_4(1) mean_MM_BGS_5(1)]);
 
-%% Barchart met verschil amplitude BGS en ALA afhankelijk van hoelang erop geplakt (re-application only) MS
+%% Barchart met verschil amplitude BGS en ALA afhankelijk van hoelang erop geplakt (re-application only) MM
 
-total_ALA_MM = [0 MM_Pleister5_4uur(49,1) MM_Pleister6_5uur(49,1) MM_Pleister7_6uur(49,1) MM_Pleister8_7uur(49,1) MM_Pleister9_8uur(49,1) MM_Pleister10_9uur(49,1) MM_Pleister11_10uur(49,1) 0 0 MM_Pleister2_13uur(49,1) MM_Pleister3_14uur(49,1)];
-total_BGS_MM = [0 mean_MM_BGS_25 mean_MM_BGS_3(1) mean_MM_BGS_35 mean_MM_BGS_4(1) mean_MM_BGS_45 mean_MM_BGS_5(1) mean_MM_BGS_5(1) 0 0 mean_MM_BGS_25 mean_MM_BGS_3(1)];
+total_ALA_MM = [0 max_MM_Pleister5_4uur max_MM_Pleister6_5uur max_MM_Pleister7_6uur max_MM_Pleister8_7uur max_MM_Pleister9_8uur max_MM_Pleister10_9uur max_MM_Pleister11_10uur 0 0 max_MM_Pleister2_13uur max_MM_Pleister3_14uur max_MM_Pleister4_15uur max_MM_Pleister3_16uur max_MM_Pleister4_17uur max_MM_Pleister3_18uur max_MM_Pleister4_19uur];
+total_BGS_MM = [0 mean_MM_BGS_25 mean_MM_BGS_3(1) mean_MM_BGS_35 mean_MM_BGS_4(1) mean_MM_BGS_45 mean_MM_BGS_5(1) mean_MM_BGS_5(1) 0 0 mean_MM_BGS_25 mean_MM_BGS_3(1) mean_MM_BGS_35 mean_MM_BGS_4(1) mean_MM_BGS_45 mean_MM_BGS_5(1) mean_MM_BGS_5(1)];
 
-X = categorical({'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'});
-X = reordercats(X,{'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'});
+X = categorical({'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'; '15 uur*'; '16 uur'; '17 uur*';'18 uur';'19 uur*'});
+X = reordercats(X,{'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'; '15 uur*'; '16 uur'; '17 uur*';'18 uur';'19 uur*'});
 
 figure(2)
 b = bar(X, [total_ALA_MM' total_BGS_MM'], 0.8)
-ylim([0 70000])
+ylim([0 50000])
 ylabel('amplitude')
-xlabel('time after APA application (re-applied)')
-legend('measured APA signal', 'measured BG signal')
-title('Maximum amplitude APA vs. BG measurements re-applied only MS')
+xlabel('time after ALA application (re-applied)')
+legend('measured ALA signal', 'measured BG signal')
+title('Maximum amplitude ALA vs. BG measurements re-applied only MS')
 
