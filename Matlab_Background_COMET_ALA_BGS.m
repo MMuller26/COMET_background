@@ -74,59 +74,75 @@ title('raw data of background measurements at different times')
 
 %% Vergelijking per BGS meting MM
 
-figure(2)
-plot(samples, MM_Pleister5_3uur(49:end,1), samples, mean_MM_BGS_Pleister_2_5)
-legend('ALA PL5', 'BGS')
-title('comparison ALA-sticker after 3 hour application vs. background')
+% figure(2)
+% plot(samples, MM_Pleister5_3uur(49:end,1), samples, mean_MM_BGS_Pleister_2_5)
+% legend('ALA PL5', 'BGS')
+% title('comparison ALA-sticker after 3 hour application vs. background')
+% 
+% figure(3)
+% plot(samples, MM_Pleister7_5uur(49:end,1), samples, mean_MM_BGS_Pleister_4_7)
+% legend('ALA PL7', 'BGS')
+% title('comparison ALA-sticker after 5 hour application vs. background')
+% 
+% figure(4)
+% plot(samples, MM_Pleister9_7uur(49:end,1), samples, mean_MM_BGS_Pleister_9)
+% legend('ALA PL9', 'BGS')
+% title('comparison ALA-sticker after 7 hour application vs. background')
+% 
+% figure(5)
+% plot(samples, MM_Pleister11_9uur(49:end,1), samples, mean_MM_BGS_Pleister_11)
+% legend('ALA PL11', 'BGS')
+% title('comparison ALA-sticker after 9 hour application vs. background')
+% 
+% figure(6)
+% plot(samples, MM_Pleister1_11uur(49:end,1), samples, mean_MM_BGS_Pleister_1)
+% legend('ALA PL1', 'BGS')
+% title('comparison ALA-sticker after 11 hour application vs. background')
+% 
+% figure(7)
+% plot(samples, MM_Pleister2_12uur(49:end,1), samples, mean_MM_BGS_Pleister_2_5)
+% legend('ALA PL2', 'BGS')
+% title('comparison ALA-sticker after 12 hour application vs. background')
+% 
+% figure(8)
+% plot(samples, MM_Pleister4_14uur(49:end,1), samples, mean_MM_BGS_Pleister_4_7)
+% legend('ALA PL4', 'BGS')
+% title('comparison ALA-sticker after 14 hour application vs. background')
 
-figure(3)
-plot(samples, MM_Pleister7_5uur(49:end,1), samples, mean_MM_BGS_Pleister_4_7)
-legend('ALA PL7', 'BGS')
-title('comparison ALA-sticker after 5 hour application vs. background')
+% determining median mitoPO2
+max_MM_Pleister5_3uur = median(MM_Pleister5_3uur(49,:));
+max_MM_Pleister6_4uur = median(MM_Pleister6_4uur(49,:));
+max_MM_Pleister7_5uur = median(MM_Pleister7_5uur(49,:));
+max_MM_Pleister8_6uur = median(MM_Pleister8_6uur(49,:));
+max_MM_Pleister9_7uur = median(MM_Pleister9_7uur(49,:));
+max_MM_Pleister10_8uur = median(MM_Pleister10_8uur(49,:));
+max_MM_Pleister11_9uur = median(MM_Pleister11_9uur(49,:));
+max_MM_Pleister12_10uur = median(MM_Pleister12_10uur(49,:));
+max_MM_Pleister1_11uur = median(MM_Pleister1_11uur(49,:));
+max_MM_Pleister2_12uur = median(MM_Pleister2_12uur(49,:));
+max_MM_Pleister3_13uur = median(MM_Pleister3_13uur(49,:));
+max_MM_Pleister4_14uur = median(MM_Pleister4_14uur(49,:));
 
-figure(4)
-plot(samples, MM_Pleister9_7uur(49:end,1), samples, mean_MM_BGS_Pleister_9)
-legend('ALA PL9', 'BGS')
-title('comparison ALA-sticker after 7 hour application vs. background')
-
-figure(5)
-plot(samples, MM_Pleister11_9uur(49:end,1), samples, mean_MM_BGS_Pleister_11)
-legend('ALA PL11', 'BGS')
-title('comparison ALA-sticker after 9 hour application vs. background')
-
-figure(6)
-plot(samples, MM_Pleister1_11uur(49:end,1), samples, mean_MM_BGS_Pleister_1)
-legend('ALA PL1', 'BGS')
-title('comparison ALA-sticker after 11 hour application vs. background')
-
-figure(7)
-plot(samples, MM_Pleister2_12uur(49:end,1), samples, mean_MM_BGS_Pleister_2_5)
-legend('ALA PL2', 'BGS')
-title('comparison ALA-sticker after 12 hour application vs. background')
-
-figure(8)
-plot(samples, MM_Pleister4_14uur(49:end,1), samples, mean_MM_BGS_Pleister_4_7)
-legend('ALA PL4', 'BGS')
-title('comparison ALA-sticker after 14 hour application vs. background')
-
+% mean background signals between measurements
 mean_MM_BGS_Pleister_3_6 = mean([mean_MM_BGS_Pleister_2_5(1) mean_MM_BGS_Pleister_4_7(1)]);
 mean_MM_BGS_Pleister_8 = mean([mean_MM_BGS_Pleister_4_7(1) mean_MM_BGS_Pleister_9(1)]);
 mean_MM_BGS_Pleister_10 = mean([mean_MM_BGS_Pleister_9(1) mean_MM_BGS_Pleister_11(1)]);
 
-total_ALA_MM = [MM_Pleister5_3uur(49,1) MM_Pleister6_4uur(49,1) MM_Pleister7_5uur(49,1) MM_Pleister8_6uur(49,1) MM_Pleister9_7uur(49,1) MM_Pleister10_8uur(49,1) MM_Pleister11_9uur(49,1) MM_Pleister12_10uur(49,1) MM_Pleister1_11uur(49,1) MM_Pleister2_12uur(49,1) MM_Pleister3_13uur(49,1) MM_Pleister4_14uur(49,1)];
+%making vectors
+total_ALA_MM = [max_MM_Pleister5_3uur max_MM_Pleister6_4uur max_MM_Pleister7_5uur max_MM_Pleister8_6uur max_MM_Pleister9_7uur max_MM_Pleister10_8uur max_MM_Pleister11_9uur max_MM_Pleister12_10uur max_MM_Pleister1_11uur max_MM_Pleister2_12uur max_MM_Pleister3_13uur max_MM_Pleister4_14uur];
 total_BGS_MM = [mean_MM_BGS_Pleister_2_5(1) mean_MM_BGS_Pleister_3_6 mean_MM_BGS_Pleister_4_7(1) mean_MM_BGS_Pleister_8 mean_MM_BGS_Pleister_9(1) mean_MM_BGS_Pleister_10 mean_MM_BGS_Pleister_11(1) mean_MM_BGS_Pleister_11(1) mean_MM_BGS_Pleister_1(1) mean_MM_BGS_Pleister_2_5(1) mean_MM_BGS_Pleister_3_6 mean_MM_BGS_Pleister_4_7(1)];
 
 %% Barchart met verschil amplitude BGS en ALA afhankelijk van hoelang erop geplakt. MM
 X = categorical({'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'});
 X = reordercats(X,{'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'});
 
-figure(9)
+figure(2)
 b = bar(X, [total_ALA_MM' total_BGS_MM'], 0.8)
-ylim([0 70000])
+ylim([0 50000])
 ylabel('amplitude')
-xlabel('time after APA application (re-applied)')
-legend('measured APA signal', 'measured BG signal')
-title('Maximum amplitude APA vs. BG measurements MM')
+xlabel('time after ALA application (re-applied)')
+legend('measured ALA signal', 'measured BG signal')
+title('Maximum amplitude ALA vs. BG measurements MM')
 
 
 
@@ -187,57 +203,73 @@ samples = [1:1:length(MM_Pleister1_11uur(49:end, :))];
 
 %% Vergelijking per BGS meting MS
 
-figure(10)
-plot(samples, MM_Pleister5_3uur(49:end,1), samples, mean_MM_BGS_Pleister_2_5)
-legend('ALA PL5', 'BGS')
-title('comparison ALA-sticker after 3 hour application vs. background')
+% figure(10)
+% plot(samples, MM_Pleister5_3uur(49:end,1), samples, mean_MM_BGS_Pleister_2_5)
+% legend('ALA PL5', 'BGS')
+% title('comparison ALA-sticker after 3 hour application vs. background')
+% 
+% figure(11)
+% plot(samples, MM_Pleister7_5uur(49:end,1), samples, mean_MM_BGS_Pleister_4_7)
+% legend('ALA PL7', 'BGS')
+% title('comparison ALA-sticker after 5 hour application vs. background')
+% 
+% figure(12)
+% plot(samples, MM_Pleister9_7uur(49:end,1), samples, mean_MM_BGS_Pleister_9)
+% legend('ALA PL9', 'BGS')
+% title('comparison ALA-sticker after 7 hour application vs. background')
+% 
+% figure(13)
+% plot(samples, MM_Pleister11_9uur(49:end,1), samples, mean_MM_BGS_Pleister_11)
+% legend('ALA PL11', 'BGS')
+% title('comparison ALA-sticker after 9 hour application vs. background')
+% 
+% figure(14)
+% plot(samples, MM_Pleister1_11uur(49:end,1), samples, mean_MM_BGS_Pleister_1)
+% legend('ALA PL1', 'BGS')
+% title('comparison ALA-sticker after 11 hour application vs. background')
+% 
+% figure(15)
+% plot(samples, MM_Pleister2_12uur(49:end,1), samples, mean_MM_BGS_Pleister_2_5)
+% legend('ALA PL2', 'BGS')
+% title('comparison ALA-sticker after 12 hour application vs. background')
+% 
+% figure(16)
+% plot(samples, MM_Pleister4_14uur(49:end,1), samples, mean_MM_BGS_Pleister_4_7)
+% legend('ALA PL4', 'BGS')
+% title('comparison ALA-sticker after 14 hour application vs. background')
 
-figure(11)
-plot(samples, MM_Pleister7_5uur(49:end,1), samples, mean_MM_BGS_Pleister_4_7)
-legend('ALA PL7', 'BGS')
-title('comparison ALA-sticker after 5 hour application vs. background')
+% determining median mitoPO2
+max_MM_Pleister5_3uur = median(MM_Pleister5_3uur(49,:));
+max_MM_Pleister6_4uur = median(MM_Pleister6_4uur(49,:));
+max_MM_Pleister7_5uur = median(MM_Pleister7_5uur(49,:));
+max_MM_Pleister8_6uur = median(MM_Pleister8_6uur(49,:));
+max_MM_Pleister9_7uur = median(MM_Pleister9_7uur(49,:));
+max_MM_Pleister10_8uur = median(MM_Pleister10_8uur(49,:));
+max_MM_Pleister11_9uur = median(MM_Pleister11_9uur(49,:));
+max_MM_Pleister12_10uur = median(MM_Pleister12_10uur(49,:));
+max_MM_Pleister1_11uur = median(MM_Pleister1_11uur(49,:));
+max_MM_Pleister2_12uur = median(MM_Pleister2_12uur(49,:));
+max_MM_Pleister3_13uur = median(MM_Pleister3_13uur(49,:));
+max_MM_Pleister4_14uur = median(MM_Pleister4_14uur(49,:));
 
-figure(12)
-plot(samples, MM_Pleister9_7uur(49:end,1), samples, mean_MM_BGS_Pleister_9)
-legend('ALA PL9', 'BGS')
-title('comparison ALA-sticker after 7 hour application vs. background')
-
-figure(13)
-plot(samples, MM_Pleister11_9uur(49:end,1), samples, mean_MM_BGS_Pleister_11)
-legend('ALA PL11', 'BGS')
-title('comparison ALA-sticker after 9 hour application vs. background')
-
-figure(14)
-plot(samples, MM_Pleister1_11uur(49:end,1), samples, mean_MM_BGS_Pleister_1)
-legend('ALA PL1', 'BGS')
-title('comparison ALA-sticker after 11 hour application vs. background')
-
-figure(15)
-plot(samples, MM_Pleister2_12uur(49:end,1), samples, mean_MM_BGS_Pleister_2_5)
-legend('ALA PL2', 'BGS')
-title('comparison ALA-sticker after 12 hour application vs. background')
-
-figure(16)
-plot(samples, MM_Pleister4_14uur(49:end,1), samples, mean_MM_BGS_Pleister_4_7)
-legend('ALA PL4', 'BGS')
-title('comparison ALA-sticker after 14 hour application vs. background')
-
+% mean background signals between measurements
 mean_MM_BGS_Pleister_3_6 = mean([mean_MM_BGS_Pleister_2_5(1) mean_MM_BGS_Pleister_4_7(1)]);
 mean_MM_BGS_Pleister_8 = mean([mean_MM_BGS_Pleister_4_7(1) mean_MM_BGS_Pleister_9(1)]);
 mean_MM_BGS_Pleister_10 = mean([mean_MM_BGS_Pleister_9(1) mean_MM_BGS_Pleister_11(1)]);
 
-total_ALA_MM = [MM_Pleister5_3uur(49,1) MM_Pleister6_4uur(49,1) MM_Pleister7_5uur(49,1) MM_Pleister8_6uur(49,1) MM_Pleister9_7uur(49,1) MM_Pleister10_8uur(49,1) MM_Pleister11_9uur(49,1) MM_Pleister12_10uur(49,1) MM_Pleister1_11uur(49,1) MM_Pleister2_12uur(49,1) MM_Pleister3_13uur(49,1) MM_Pleister4_14uur(49,1)];
+%making vectors
+total_ALA_MM = [max_MM_Pleister5_3uur max_MM_Pleister6_4uur max_MM_Pleister7_5uur max_MM_Pleister8_6uur max_MM_Pleister9_7uur max_MM_Pleister10_8uur max_MM_Pleister11_9uur max_MM_Pleister12_10uur max_MM_Pleister1_11uur max_MM_Pleister2_12uur max_MM_Pleister3_13uur max_MM_Pleister4_14uur];
 total_BGS_MM = [mean_MM_BGS_Pleister_2_5(1) mean_MM_BGS_Pleister_3_6 mean_MM_BGS_Pleister_4_7(1) mean_MM_BGS_Pleister_8 mean_MM_BGS_Pleister_9(1) mean_MM_BGS_Pleister_10 mean_MM_BGS_Pleister_11(1) mean_MM_BGS_Pleister_11(1) mean_MM_BGS_Pleister_1(1) mean_MM_BGS_Pleister_2_5(1) mean_MM_BGS_Pleister_3_6 mean_MM_BGS_Pleister_4_7(1)];
 
 %% Barchart met verschil amplitude BGS en ALA afhankelijk van hoelang erop geplakt. MM
 X = categorical({'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'});
 X = reordercats(X,{'3 uur'; '4 uur*'; '5 uur'; '6 uur*'; '7 uur'; '8 uur*'; '9 uur'; '10 uur*'; '11 uur'; '12 uur'; '13 uur*'; '14 uur'});
 
-figure(17)
+figure(3)
 b = bar(X, [total_ALA_MM' total_BGS_MM'], 0.8)
-ylim([0 70000])
+ylim([0 50000])
 ylabel('amplitude')
-xlabel('time after APA application (re-applied)')
-legend('measured APA signal', 'measured BG signal')
-title('Maximum amplitude APA vs. BG measurements MS')
+xlabel('time after ALA application (re-applied)')
+legend('measured ALA signal', 'measured BG signal')
+title('Maximum amplitude ALA vs. BG measurements MS')
 
