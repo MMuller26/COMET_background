@@ -11,7 +11,7 @@ folder = fileparts(which(mfilename));
 addpath(genpath(folder));
 
 [~, mid_air] = xlsread('COMET_BG_30xluchtledige_measurements_02-12-2021_09;59;50.xlsx');
-percBG=0.5; % Percentage of BG in simulatied signal
+percBG=0.1; % Percentage of BG in simulatied signal
 
 %% Data processing mid-air measurement
 % selecting the parameter column
@@ -126,10 +126,10 @@ aLifetime=1; % random number to get an example
 %% Change mono-exponent to logarithmic scale
 lifetime_mid_air_out = zeros(1,size(lifetime_in,2));
 lifetime_mid_air_in = zeros(1,size(lifetime_in,2));
-lnSignal=NaN(size(monoExp));
+lnSignal=NaN(size(signal));
 
-for lifetimeNumber = 1:1:size(monoExp,1)
-    lnSignal(lifetimeNumber,:)=log(monoExp(lifetimeNumber,:));
+for lifetimeNumber = 1:1:size(signal,1)
+    lnSignal(lifetimeNumber,:)=log(signal(lifetimeNumber,:));
 end
 
 figure(6)
@@ -147,14 +147,16 @@ lifetime_out=NaN(1,size(lnSignal,1));
 for i = 1:1:size(lnSignal,1)
     c = polyfit(samples,lnSignal(i,:),1);
     linFit=polyval(c,samples);
-    
+         
     figure(7)
     plot(samples,linFit,samples,lnSignal(i,:))
-    legend('linear fit' , 'Combined signal')
+    legend('linear fit' , 'Signal')
     
     lifetime_out(i)=-1/c(1);
 end
 
+%linfit verandert wel tijdens loop.
+% fit is perfect
 %% lifetime to PO2
 PO2_mid_air_out =NaN(1, length(PO2_in));
 for k = 1:length(PO2_in)
