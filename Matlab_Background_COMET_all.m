@@ -288,6 +288,17 @@ plot(x, norm_mid_air, x, norm_fiber_straight)
 legend('mid-air','straight fiber')
 title('1Hz mid-air vs. 1Hz straight fiber measurement')
 ylim([0 1])
+xlabel('samples')
+
+log_norm_mid_air = log(norm_mid_air);
+log_norm_fiber_straight = log(norm_fiber_straight);
+
+figure(91)
+plot(x, log_norm_mid_air, x, log_norm_fiber_straight)
+legend('mid-air','straight fiber')
+title('1Hz mid-air vs. 1Hz straight fiber measurement - natural log')
+xlabel('samples')
+
 %% Comparing mean of background MM skin 2Hz without pressure vs. straight fiber 1Hz measurement
 
 figure(10)
