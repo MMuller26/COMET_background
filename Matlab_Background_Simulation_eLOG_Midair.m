@@ -135,11 +135,14 @@ end
 figure(6)
 subplot(2,1,1)
 plot(samples, signal(1,:), samples, monoExp(1,:), samples, BGstart)
-legend('signal','monoExp', 'BGS')
+legend('signal example','monoExp', 'BGS')
 title('Example of a signal combined from the shown monoExp and BGS' )
+xlabel('Samples')
 subplot(2,1,2)
 plot(samples, lnSignal(1,:))
 title('Example of ln of the signal shown above')
+xlabel('Samples')
+legend('signal example')
 
 %% Fit to lnSignal
 lifetime_out=NaN(1,size(lnSignal,1));
@@ -151,6 +154,7 @@ for i = 1:1:size(lnSignal,1)
     figure(7)
     plot(samples,linFit,samples,lnSignal(i,:))
     legend('linear fit' , 'Signal')
+    xlabel('samples' )
     
     lifetime_out(i)=-1/c(1);
 end
