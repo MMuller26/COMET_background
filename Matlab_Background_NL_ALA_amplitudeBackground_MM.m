@@ -14,14 +14,14 @@ MM_BGS_4 = [];
 MM_BGS_5 = [];
 
 for i = 2:1:6
-    MM_BGS_2 = [MM_BGS_2, xlsread('NL_1004uur_MS_sticker1_meting2.xlsx', i, 'A2:A2001')];
-    MM_BGS_3 = [MM_BGS_3, xlsread('NL_1058uur_MS_sticker1_meting3.xlsx', i, 'A2:A2001')];
-    MM_BGS_4 = [MM_BGS_4, xlsread('NL_1200uur_MS_sticker1_meting4.xlsx', i, 'A2:A2001')];
-    MM_BGS_5 = [MM_BGS_5, xlsread('NL_1251uur_MS_sticker1_meting5.xlsx', i, 'A2:A2001')];
+    MM_BGS_2 = [MM_BGS_2, xlsread('NL_1011uur_BGS_meting2.xlsx', i, 'A2:A2001')];
+    MM_BGS_3 = [MM_BGS_3, xlsread('NL_1134uur_MM_BGS_meting3.xlsx', i, 'A2:A2001')];
+    MM_BGS_4 = [MM_BGS_4, xlsread('NL_1340uur_MM_BGS_meting4.xlsx', i, 'A2:A2001')];
+    MM_BGS_5 = [MM_BGS_5, xlsread('NL_1532uur_MM_BGS_meting5.xlsx', i, 'A2:A2001')];
 end
 
 for j = 7:1:11
-    MM_BGS_1 = [MM_BGS_1, xlsread('NL_8.50uur_Meting_1.xlsx', j, 'A2:A2001')];
+    MM_BGS_1 = [MM_BGS_1, xlsread('NL_0840uur_MM_Meting1_poging2', j, 'A2:A2001')];
 end
 
 %% calculating mean of maximum
@@ -52,14 +52,14 @@ MM2_BGS_4 = [];
 MM2_BGS_5 = [];
 
 for i = 2:1:6
-    MM2_BGS_2 = [MM2_BGS_2, xlsread('NL_1004uur_MS_sticker1_meting2.xlsx', i, 'B2:B2001')];
-    MM2_BGS_3 = [MM2_BGS_3, xlsread('NL_1058uur_MS_sticker1_meting3.xlsx', i, 'B2:B2001')];
-    MM2_BGS_4 = [MM2_BGS_4, xlsread('NL_1200uur_MS_sticker1_meting4.xlsx', i, 'B2:B2001')];
-    MM2_BGS_5 = [MM2_BGS_5, xlsread('NL_1251uur_MS_sticker1_meting5.xlsx', i, 'B2:B2001')];
+    MM2_BGS_2 = [MM2_BGS_2, xlsread('NL_1011uur_BGS_meting2.xlsx', i, 'B2:B2001')];
+    MM2_BGS_3 = [MM2_BGS_3, xlsread('NL_1134uur_MM_BGS_meting3.xlsx', i, 'B2:B2001')];
+    MM2_BGS_4 = [MM2_BGS_4, xlsread('NL_1340uur_MM_BGS_meting4.xlsx', i, 'B2:B2001')];
+    MM2_BGS_5 = [MM2_BGS_5, xlsread('NL_1532uur_MM_BGS_meting5.xlsx', i, 'B2:B2001')];
 end
 
 for j = 7:1:11
-    MM2_BGS_1 = [MM2_BGS_1, xlsread('NL_8.50uur_Meting_1.xlsx', j, 'B2:B2001')];
+    MM2_BGS_1 = [MM2_BGS_1, xlsread('NL_0840uur_MM_Meting1_poging2', j, 'B2:B2001')];
 end
 
 %% calculating mean of maximum
