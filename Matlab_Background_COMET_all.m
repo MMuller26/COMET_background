@@ -313,11 +313,92 @@ plot(x, norm_skin_2Hz, x, norm_fiber_bent)
 legend('MM skin NoPress','bent fiber')
 title('2Hz skin NoPress vs. 1Hz bent fiber measurement')
 ylim([0 1])
-%% Comparison mean background MM skin 2Hz without pressure vs. mid-air 1Hz vs. old laser PBS wells measurement 
+
+
+%% Inladen NL experiment MM
+folder = fileparts(which(mfilename)); 
+addpath(genpath(folder));
+
+MM_BGS_1 = [];
+MM_BGS_2 = [];
+MM_BGS_3 = [];
+MM_BGS_4 = [];
+MM_BGS_5 = [];
+
+for i = 2:1:6
+    MM_BGS_2 = [MM_BGS_2, xlsread('NL_1011uur_BGS_meting2.xlsx', i, 'A2:A2001')];
+    MM_BGS_3 = [MM_BGS_3, xlsread('NL_1134uur_MM_BGS_meting3.xlsx', i, 'A2:A2001')];
+    MM_BGS_4 = [MM_BGS_4, xlsread('NL_1340uur_MM_BGS_meting4.xlsx', i, 'A2:A2001')];
+    MM_BGS_5 = [MM_BGS_5, xlsread('NL_1532uur_MM_BGS_meting5.xlsx', i, 'A2:A2001')];
+end
+
+for j = 7:1:11
+    MM_BGS_1 = [MM_BGS_1, xlsread('NL_0840uur_MM_Meting1_poging2', j, 'A2:A2001')];
+end
+
+mean_MM_BGS_1 = -mean(MM_BGS_1(2:end, :), 2);
+mean_MM_BGS_2 = -mean(MM_BGS_2(2:end, :), 2);
+mean_MM_BGS_3 = -mean(MM_BGS_3(2:end, :), 2);
+mean_MM_BGS_4 = -mean(MM_BGS_4(2:end, :), 2);
+mean_MM_BGS_5 = -mean(MM_BGS_5(2:end, :), 2);
+
+mean_MM_BGS_total = mean([mean_MM_BGS_1 mean_MM_BGS_2 mean_MM_BGS_3 mean_MM_BGS_4 mean_MM_BGS_5],2);
+
+% Implementing correction 
+mean_correct = mean(mean_MM_BGS_total(end-4:end));
+mean_correct_MM_BGS = mean_MM_BGS_total - mean_correct;
+ 
+% Normalizing 
+max_MM_BGS_correct = max(mean_correct_MM_BGS);
+MM_BGS_correct_norm = mean_correct_MM_BGS / max_MM_BGS_correct;
+
+%% Inladen NL experiment MS
+folder = fileparts(which(mfilename)); 
+addpath(genpath(folder));
+
+MS_BGS_1 = [];
+MS_BGS_2 = [];
+MS_BGS_3 = [];
+MS_BGS_4 = [];
+MS_BGS_5 = [];
+
+for i = 2:1:6
+    MS_BGS_2 = [MS_BGS_2, xlsread('NL_1014uur_MS_BGS_meting2.xlsx', i, 'A2:A2001')];
+    MS_BGS_3 = [MS_BGS_3, xlsread('NL_1138uur_MS_BGS_meting3.xlsx', i, 'A2:A2001')];
+    MS_BGS_4 = [MS_BGS_4, xlsread('NL_1342uur_MS_BGS_meting4.xlsx', i, 'A2:A2001')];
+    MS_BGS_5 = [MS_BGS_5, xlsread('NL_1535uur_MS_BGS_meting5.xlsx', i, 'A2:A2001')];
+end
+
+for j = 7:1:11
+    MS_BGS_1 = [MS_BGS_1, xlsread('NL_8.50uur_Meting_1.xlsx', j, 'A2:A2001')];
+end
+
+mean_MS_BGS_1 = -mean(MS_BGS_1(2:end, :), 2);
+mean_MS_BGS_2 = -mean(MS_BGS_2(2:end, :), 2);
+mean_MS_BGS_3 = -mean(MS_BGS_3(2:end, :), 2);
+mean_MS_BGS_4 = -mean(MS_BGS_4(2:end, :), 2);
+mean_MS_BGS_5 = -mean(MS_BGS_5(2:end, :), 2);
+
+mean_MS_BGS_total = mean([mean_MS_BGS_1 mean_MS_BGS_2 mean_MS_BGS_3 mean_MS_BGS_4 mean_MS_BGS_5],2);
+
+% Implementing correction 
+mean_correct = mean(mean_MS_BGS_total(end-4:end));
+mean_correct_MS_BGS = mean_MS_BGS_total - mean_correct;
+ 
+% Normalizing 
+max_MS_BGS_correct = max(mean_correct_MS_BGS);
+MS_BGS_correct_norm = mean_correct_MS_BGS / max_MS_BGS_correct;
+
+%% Comparison mean background MM skin 2Hz without pressure vs. mid-air 1Hz vs. old laser PBS vs. NL skin MM and MS wells measurement 
 figure(12)
 plot(x(1:1883, 1), norm_skin_2Hz(1:1883,1))
 hold on
 plot(x(1:1883, 1), norm_mid_air(1:1883,1))
 plot(x(1:1883, 1), norm_old_laser')
-legend('comet-skin', 'comet-mid-air', 'old laser-pbs')
-title('normalized comet skin, comet mid-air and old-laser pbs measurements')
+plot(x(1:1883, 1), MM_BGS_correct_norm(1:1883,1))
+plot(x(1:1883, 1), MS_BGS_correct_norm(1:1883,1))
+xlabel('samples')
+ylabel('lifetime μs')
+ylim([0 1])
+legend('comet-skin', 'comet-mid-air', 'old laser-pbs', 'NL-skin-MM', 'NL-skin-MS')
+title('normalized comet skin/mid-air, old-laser pbs, new-laser skin MM/MS lifetimes')

@@ -24,6 +24,7 @@ for j = 7:1:11
     MM_BGS_1 = [MM_BGS_1, xlsread('NL_0840uur_MM_Meting1_poging2', j, 'A2:A2001')];
 end
 
+
 %% calculating mean of maximum
 max_MM_BGS_1 = -(mean(MM_BGS_1(2,:)));
 max_MM_BGS_2 = -(mean(MM_BGS_2(2,:)));
