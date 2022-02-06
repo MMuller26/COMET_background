@@ -34,21 +34,9 @@
 
   Matlab_Background_OldLaserPBS_Continue.m = Uitprobeersel!
 
-**COMET ALA vs BG:**
+**COMET ALA vs BG: **
   Matlab_Background_COMET_ALA_Pleister1.m = alles van pleister 1
   Matlab_Background_COMET_ALA_BGS.m = 3tm14 uur vergeleken met BGS (amplitude) (van ons protocol)
   Matlab_Background_COMET_ALA_3to14hours.m = 3 tm 14 uur mitoPO2 vergeleken (ons protocol)
   Matlab_Background_COMET_ALA_reapplication.m = heropgeplakte pleisters mitoPO2
-  Matlab_Background_COMET_ALA_BGS_reapplication.m = heropgeplakte pleisters ala amplt. vergeleken met bgs amplt.
-
-**NL ALA vs. BG (ALLEEN AMPLITUDE)**
-  Matlab_Background_NL_ALA_amplitude3tm14_MM.m = ons protocol inladen NL data MM (genereerd ...mat)
-  Matlab_Background_NL_ALA_amplitude3tm14_MS.m = ons protocol inladen NL data MS (genereerd ...mat)
-  Matlab_Background_NL_ALA_amplitude4tm19_MM.m = herplakte inladen NL data MM (genereerd ....reapplied.mat)
-  Matlab_Background_NL_ALA_amplitude4tm19_MS.m = herplakte inladen NL data MS (genereerd ....reapplied.mat)
-  Matlab_Background_NL_ALA_amplitudePleister1_MM.m = verwijderde ALA plakker (#1) inladen NL data MM (genereerd ...pleister1.mat)
-  Matlab_Background_NL_ALA_amplitudePleister1_MS.m =  verwijderde ALA plakker (#1) inladen NL data MS (genereerd ...pleister1.mat)
-  Matlab_Background_NL_ALA_amplitudeBackground_MM.m = achtergrond meting inladen NL data MM (genereerd ...background.mat)
-  Matlab_Background_NL_ALA_amplitudeBackground_MS.m =  achtergrond meting inladen NL data MS (genereerd ...background.mat)
-  
-  Matlab_Background_NL_ALA_amplitude_plots.m = file waarin alle .mat bestanden worden geplot. 
+  Matlab_Background_COMET_ALA_BGS_reapplication.m = heropgeplakte pleisters ala amplt. vergeleken met bgs amplt. 
