@@ -4,6 +4,9 @@ close all
 clc
 
 %% Reading in files MM:
+folder = fileparts(which(mfilename)); 
+addpath(genpath(folder));
+
 %1 x herplakt
 [~, MM_Pleister5_4uur] = xlsread('measurements_27-01-2022_11;05;19.xlsx');
 [~, MM_Pleister6_5uur] = xlsread('measurements_27-01-2022_12;06;26.xlsx');

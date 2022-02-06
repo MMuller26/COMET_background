@@ -56,14 +56,14 @@ MM_BGS_Pleister_4_7 = cellfun(@str2num, MM_BGS_Pleister_4_7(7:end, 2:end));
 MM_BGS_Pleister_9 = cellfun(@str2num, MM_BGS_Pleister_9(7:end, 2:end));
 MM_BGS_Pleister_11 = cellfun(@str2num, MM_BGS_Pleister_11(7:end, 2:end));
 
-mean_MM_BGS_Pleister_1 = mean(MM_BGS_Pleister_1(49:end, :), 2);
-mean_MM_BGS_Pleister_2_5 = mean(MM_BGS_Pleister_2_5(49:end, :), 2);
-mean_MM_BGS_Pleister_4_7 = mean(MM_BGS_Pleister_4_7(49:end, :), 2);
-mean_MM_BGS_Pleister_9 = mean(MM_BGS_Pleister_9(49:end, :), 2);
-mean_MM_BGS_Pleister_11 = mean(MM_BGS_Pleister_11(49:end, :), 2);
+mean_MM_BGS_Pleister_1 = mean(MM_BGS_Pleister_1(48:end, :), 2);
+mean_MM_BGS_Pleister_2_5 = mean(MM_BGS_Pleister_2_5(48:end, :), 2);
+mean_MM_BGS_Pleister_4_7 = mean(MM_BGS_Pleister_4_7(48:end, :), 2);
+mean_MM_BGS_Pleister_9 = mean(MM_BGS_Pleister_9(48:end, :), 2);
+mean_MM_BGS_Pleister_11 = mean(MM_BGS_Pleister_11(48:end, :), 2);
 
 % defining amount of samples
-samples = [1:1:length(MM_Pleister1_11uur(49:end, :))];
+samples = [1:1:length(MM_Pleister1_11uur(48:end, :))];
 
 %% Vergelijking gemiddelde BGS metingen over tijd MM
 
@@ -110,18 +110,18 @@ title('raw data of background measurements at different times')
 % title('comparison ALA-sticker after 14 hour application vs. background')
 
 % determining median mitoPO2
-max_MM_Pleister5_3uur = median(MM_Pleister5_3uur(49,:));
-max_MM_Pleister6_4uur = median(MM_Pleister6_4uur(49,:));
-max_MM_Pleister7_5uur = median(MM_Pleister7_5uur(49,:));
-max_MM_Pleister8_6uur = median(MM_Pleister8_6uur(49,:));
-max_MM_Pleister9_7uur = median(MM_Pleister9_7uur(49,:));
-max_MM_Pleister10_8uur = median(MM_Pleister10_8uur(49,:));
-max_MM_Pleister11_9uur = median(MM_Pleister11_9uur(49,:));
-max_MM_Pleister12_10uur = median(MM_Pleister12_10uur(49,:));
-max_MM_Pleister1_11uur = median(MM_Pleister1_11uur(49,:));
-max_MM_Pleister2_12uur = median(MM_Pleister2_12uur(49,:));
-max_MM_Pleister3_13uur = median(MM_Pleister3_13uur(49,:));
-max_MM_Pleister4_14uur = median(MM_Pleister4_14uur(49,:));
+max_MM_Pleister5_3uur = median(MM_Pleister5_3uur(48,:));
+max_MM_Pleister6_4uur = median(MM_Pleister6_4uur(48,:));
+max_MM_Pleister7_5uur = median(MM_Pleister7_5uur(48,:));
+max_MM_Pleister8_6uur = median(MM_Pleister8_6uur(48,:));
+max_MM_Pleister9_7uur = median(MM_Pleister9_7uur(48,:));
+max_MM_Pleister10_8uur = median(MM_Pleister10_8uur(48,:));
+max_MM_Pleister11_9uur = median(MM_Pleister11_9uur(48,:));
+max_MM_Pleister12_10uur = median(MM_Pleister12_10uur(48,:));
+max_MM_Pleister1_11uur = median(MM_Pleister1_11uur(48,:));
+max_MM_Pleister2_12uur = median(MM_Pleister2_12uur(48,:));
+max_MM_Pleister3_13uur = median(MM_Pleister3_13uur(48,:));
+max_MM_Pleister4_14uur = median(MM_Pleister4_14uur(48,:));
 
 % mean background signals between measurements
 mean_MM_BGS_Pleister_3_6 = mean([mean_MM_BGS_Pleister_2_5(1) mean_MM_BGS_Pleister_4_7(1)]);
@@ -191,14 +191,14 @@ MM_BGS_Pleister_4_7 = cellfun(@str2num, MM_BGS_Pleister_4_7(7:end, 2:end));
 MM_BGS_Pleister_9 = cellfun(@str2num, MM_BGS_Pleister_9(7:end, 2:end));
 MM_BGS_Pleister_11 = cellfun(@str2num, MM_BGS_Pleister_11(7:end, 2:end));
 
-mean_MM_BGS_Pleister_1 = mean(MM_BGS_Pleister_1(49:end, :), 2);
-mean_MM_BGS_Pleister_2_5 = mean(MM_BGS_Pleister_2_5(49:end, :), 2);
-mean_MM_BGS_Pleister_4_7 = mean(MM_BGS_Pleister_4_7(49:end, :), 2);
-mean_MM_BGS_Pleister_9 = mean(MM_BGS_Pleister_9(49:end, :), 2);
-mean_MM_BGS_Pleister_11 = mean(MM_BGS_Pleister_11(49:end, :), 2);
+mean_MM_BGS_Pleister_1 = mean(MM_BGS_Pleister_1(48:end, :), 2);
+mean_MM_BGS_Pleister_2_5 = mean(MM_BGS_Pleister_2_5(48:end, :), 2);
+mean_MM_BGS_Pleister_4_7 = mean(MM_BGS_Pleister_4_7(48:end, :), 2);
+mean_MM_BGS_Pleister_9 = mean(MM_BGS_Pleister_9(48:end, :), 2);
+mean_MM_BGS_Pleister_11 = mean(MM_BGS_Pleister_11(48:end, :), 2);
 
 % defining amount of samples
-samples = [1:1:length(MM_Pleister1_11uur(49:end, :))];
+samples = [1:1:length(MM_Pleister1_11uur(48:end, :))];
 
 
 %% Vergelijking per BGS meting MS
@@ -239,18 +239,18 @@ samples = [1:1:length(MM_Pleister1_11uur(49:end, :))];
 % title('comparison ALA-sticker after 14 hour application vs. background')
 
 % determining median mitoPO2
-max_MM_Pleister5_3uur = median(MM_Pleister5_3uur(49,:));
-max_MM_Pleister6_4uur = median(MM_Pleister6_4uur(49,:));
-max_MM_Pleister7_5uur = median(MM_Pleister7_5uur(49,:));
-max_MM_Pleister8_6uur = median(MM_Pleister8_6uur(49,:));
-max_MM_Pleister9_7uur = median(MM_Pleister9_7uur(49,:));
-max_MM_Pleister10_8uur = median(MM_Pleister10_8uur(49,:));
-max_MM_Pleister11_9uur = median(MM_Pleister11_9uur(49,:));
-max_MM_Pleister12_10uur = median(MM_Pleister12_10uur(49,:));
-max_MM_Pleister1_11uur = median(MM_Pleister1_11uur(49,:));
-max_MM_Pleister2_12uur = median(MM_Pleister2_12uur(49,:));
-max_MM_Pleister3_13uur = median(MM_Pleister3_13uur(49,:));
-max_MM_Pleister4_14uur = median(MM_Pleister4_14uur(49,:));
+max_MM_Pleister5_3uur = median(MM_Pleister5_3uur(48,:));
+max_MM_Pleister6_4uur = median(MM_Pleister6_4uur(48,:));
+max_MM_Pleister7_5uur = median(MM_Pleister7_5uur(48,:));
+max_MM_Pleister8_6uur = median(MM_Pleister8_6uur(48,:));
+max_MM_Pleister9_7uur = median(MM_Pleister9_7uur(48,:));
+max_MM_Pleister10_8uur = median(MM_Pleister10_8uur(48,:));
+max_MM_Pleister11_9uur = median(MM_Pleister11_9uur(48,:));
+max_MM_Pleister12_10uur = median(MM_Pleister12_10uur(48,:));
+max_MM_Pleister1_11uur = median(MM_Pleister1_11uur(48,:));
+max_MM_Pleister2_12uur = median(MM_Pleister2_12uur(48,:));
+max_MM_Pleister3_13uur = median(MM_Pleister3_13uur(48,:));
+max_MM_Pleister4_14uur = median(MM_Pleister4_14uur(48,:));
 
 % mean background signals between measurements
 mean_MM_BGS_Pleister_3_6 = mean([mean_MM_BGS_Pleister_2_5(1) mean_MM_BGS_Pleister_4_7(1)]);
