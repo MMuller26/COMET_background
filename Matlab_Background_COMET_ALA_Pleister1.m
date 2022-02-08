@@ -90,15 +90,15 @@ ylim([0 200])
 title("Lifetime for time after ALA removal (11 hours ALA application) MM")
 
 %% Grafiek voor amplitude
-med_MM_Pleister1_1 = median(MM_Pleister1_1(49,:));
-med_MM_Pleister1_2 = median(MM_Pleister1_2(49,:));
-med_MM_Pleister1_3 = median(MM_Pleister1_3(49,:));
-med_MM_Pleister1_4 = median(MM_Pleister1_4(49,:));
-med_MM_Pleister1_5 = median(MM_Pleister1_5(49,:));
-med_MM_Pleister1_6 = median(MM_Pleister1_6(49,:));
-med_MM_Pleister1_7 = median(MM_Pleister1_7(49,:));
-med_MM_Pleister1_8 = median(MM_Pleister1_8(49,:));
-med_MM_Pleister1_9 = median(MM_Pleister1_9(49,:));
+med_MM_Pleister1_1 = median(MM_Pleister1_1(48,:));
+med_MM_Pleister1_2 = median(MM_Pleister1_2(48,:));
+med_MM_Pleister1_3 = median(MM_Pleister1_3(48,:));
+med_MM_Pleister1_4 = median(MM_Pleister1_4(48,:));
+med_MM_Pleister1_5 = median(MM_Pleister1_5(48,:));
+med_MM_Pleister1_6 = median(MM_Pleister1_6(48,:));
+med_MM_Pleister1_7 = median(MM_Pleister1_7(48,:));
+med_MM_Pleister1_8 = median(MM_Pleister1_8(48,:));
+med_MM_Pleister1_9 = median(MM_Pleister1_9(48,:));
 
 med_MM_Pleister1 = [med_MM_Pleister1_1 med_MM_Pleister1_2 med_MM_Pleister1_3 med_MM_Pleister1_4 med_MM_Pleister1_5 med_MM_Pleister1_6 med_MM_Pleister1_7 med_MM_Pleister1_8 med_MM_Pleister1_9];
 
@@ -195,15 +195,15 @@ ylim([0 200])
 title("Lifetime for time after ALA removal (11 hours ALA application) MS")
 
 %% Grafiek voor amplitude
-med_MM_Pleister1_1 = median(MM_Pleister1_1(49,:));
-med_MM_Pleister1_2 = median(MM_Pleister1_2(49,:));
-med_MM_Pleister1_3 = median(MM_Pleister1_3(49,:));
-med_MM_Pleister1_4 = median(MM_Pleister1_4(49,:));
-med_MM_Pleister1_5 = median(MM_Pleister1_5(49,:));
-med_MM_Pleister1_6 = median(MM_Pleister1_6(49,:));
-med_MM_Pleister1_7 = median(MM_Pleister1_7(49,:));
-med_MM_Pleister1_8 = median(MM_Pleister1_8(49,:));
-med_MM_Pleister1_9 = median(MM_Pleister1_9(49,:));
+med_MM_Pleister1_1 = median(MM_Pleister1_1(48,:));
+med_MM_Pleister1_2 = median(MM_Pleister1_2(48,:));
+med_MM_Pleister1_3 = median(MM_Pleister1_3(48,:));
+med_MM_Pleister1_4 = median(MM_Pleister1_4(48,:));
+med_MM_Pleister1_5 = median(MM_Pleister1_5(48,:));
+med_MM_Pleister1_6 = median(MM_Pleister1_6(48,:));
+med_MM_Pleister1_7 = median(MM_Pleister1_7(48,:));
+med_MM_Pleister1_8 = median(MM_Pleister1_8(48,:));
+med_MM_Pleister1_9 = median(MM_Pleister1_9(48,:));
 
 med_MM_Pleister1 = [med_MM_Pleister1_1 med_MM_Pleister1_2 med_MM_Pleister1_3 med_MM_Pleister1_4 med_MM_Pleister1_5 med_MM_Pleister1_6 med_MM_Pleister1_7 med_MM_Pleister1_8 med_MM_Pleister1_9];
 

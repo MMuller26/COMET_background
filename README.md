@@ -5,6 +5,8 @@
   - Temperatuur analyse toegevoegd waaruit blijkt dat dit verschil kan verklaren over tijd (huid laat sensor COMET opwarmen)
   - hiervoor heb je .mat files nodig (RMSE.....mat)
   - Losse files ....Skin_Continue.m  en other_Continue.m worden gebruikt om deze files aan te maken en vergelijking te maken tussen verschillende huiden en vergelijking tussen mid-air en aluminium
+  -
+COMBINATIE PLOT = UITGEBREID MET NL EXPERIMENTEN M.B.V Matlab_Background_NL_ALA_KnownLifetime.m
 
 **Niet Continue metingen:**
   Calibration_BG_v1.m = file voor 1e oude laser meting PBS (gekregen van Harold)
@@ -24,6 +26,8 @@
   Matlab_Background_Combined_MitoPo2.m = idem hierboven maar dan in mitoPo2
   - hiervoor heb je .mat files nodig (....mitoPO2.mat & PO2_in.mat)
   - ....KnownLifetime.m files worden gebruikt om deze .mat files aan te maken (omzetting output lifetime naar mitoPo2 vindt hier plaats)
+
+= UITGEBREID MET NL EXPERIMENTEN M.B.V Matlab_Background_NL_ALA_KnownLifetime.m OM DE .mat BESTANDEN (NL....mat) AAN TE MAKEN!!!
 
 **Oude Laser ons experiment:**
   Matlab_Background_OldLaserBeads_CombinedWells.m = COMBINED WELLS: analysis of old laser data ptf4 beads (OxNano) in decreasing concentration vs. pbs, empty and medium

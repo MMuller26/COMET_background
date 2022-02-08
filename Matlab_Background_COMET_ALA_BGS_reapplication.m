@@ -71,32 +71,32 @@ MM_BGS_4 = cellfun(@str2num, MM_BGS_4(7:end, 2:end));
 MM_BGS_5 = cellfun(@str2num, MM_BGS_5(7:end, 2:end));
 
 
-mean_MM_BGS_2 = mean(MM_BGS_2(49:end, :), 2);
-mean_MM_BGS_3 = mean(MM_BGS_3(49:end, :), 2);
-mean_MM_BGS_4 = mean(MM_BGS_4(49:end, :), 2);
-mean_MM_BGS_5 = mean(MM_BGS_5(49:end, :), 2);
+mean_MM_BGS_2 = mean(MM_BGS_2(48:end, :), 2);
+mean_MM_BGS_3 = mean(MM_BGS_3(48:end, :), 2);
+mean_MM_BGS_4 = mean(MM_BGS_4(48:end, :), 2);
+mean_MM_BGS_5 = mean(MM_BGS_5(48:end, :), 2);
 
 % defining amount of samples
-samples = [1:1:length(MM_Pleister5_4uur(49:end, :))];
+samples = [1:1:length(MM_Pleister5_4uur(48:end, :))];
 
-% determining median mitoPO2
-max_MM_Pleister5_4uur = median(MM_Pleister5_4uur(49,:));
-max_MM_Pleister6_5uur = median(MM_Pleister6_5uur(49,:));
-max_MM_Pleister7_6uur = median(MM_Pleister7_6uur(49,:));
-max_MM_Pleister8_7uur = median(MM_Pleister8_7uur(49,:));
-max_MM_Pleister9_8uur = median(MM_Pleister9_8uur(49,:));
-max_MM_Pleister10_9uur = median(MM_Pleister10_9uur(49,:));
-max_MM_Pleister11_10uur = median(MM_Pleister11_10uur(49,:));
+%% determining median mitoPO2
+max_MM_Pleister5_4uur = median(MM_Pleister5_4uur(48,:));
+max_MM_Pleister6_5uur = median(MM_Pleister6_5uur(48,:));
+max_MM_Pleister7_6uur = median(MM_Pleister7_6uur(48,:));
+max_MM_Pleister8_7uur = median(MM_Pleister8_7uur(48,:));
+max_MM_Pleister9_8uur = median(MM_Pleister9_8uur(48,:));
+max_MM_Pleister10_9uur = median(MM_Pleister10_9uur(48,:));
+max_MM_Pleister11_10uur = median(MM_Pleister11_10uur(48,:));
 
-max_MM_Pleister2_13uur = median(MM_Pleister2_13uur(49,:));
-max_MM_Pleister3_14uur = median(MM_Pleister3_14uur(49,:));
-max_MM_Pleister4_15uur = median(MM_Pleister4_15uur(49,:));
+max_MM_Pleister2_13uur = median(MM_Pleister2_13uur(48,:));
+max_MM_Pleister3_14uur = median(MM_Pleister3_14uur(48,:));
+max_MM_Pleister4_15uur = median(MM_Pleister4_15uur(48,:));
 
-max_MM_Pleister3_16uur = median(MM_Pleister3_16uur(49,:));
-max_MM_Pleister4_17uur = median(MM_Pleister4_17uur(49,:));
+max_MM_Pleister3_16uur = median(MM_Pleister3_16uur(48,:));
+max_MM_Pleister4_17uur = median(MM_Pleister4_17uur(48,:));
 
-max_MM_Pleister3_18uur = median(MM_Pleister3_18uur(49,:));
-max_MM_Pleister4_19uur = median(MM_Pleister4_19uur(49,:));
+max_MM_Pleister3_18uur = median(MM_Pleister3_18uur(48,:));
+max_MM_Pleister4_19uur = median(MM_Pleister4_19uur(48,:));
 
 mean_MM_BGS_25 = mean([mean_MM_BGS_2(1) mean_MM_BGS_3(1)]);
 mean_MM_BGS_35 = mean([mean_MM_BGS_3(1) mean_MM_BGS_4(1)]);
@@ -176,32 +176,32 @@ MM_BGS_4 = cellfun(@str2num, MM_BGS_4(7:end, 2:end));
 MM_BGS_5 = cellfun(@str2num, MM_BGS_5(7:end, 2:end));
 
 
-mean_MM_BGS_2 = mean(MM_BGS_2(49:end, :), 2);
-mean_MM_BGS_3 = mean(MM_BGS_3(49:end, :), 2);
-mean_MM_BGS_4 = mean(MM_BGS_4(49:end, :), 2);
-mean_MM_BGS_5 = mean(MM_BGS_5(49:end, :), 2);
+mean_MM_BGS_2 = mean(MM_BGS_2(48:end, :), 2);
+mean_MM_BGS_3 = mean(MM_BGS_3(48:end, :), 2);
+mean_MM_BGS_4 = mean(MM_BGS_4(48:end, :), 2);
+mean_MM_BGS_5 = mean(MM_BGS_5(48:end, :), 2);
 
 %defining amount of samples
-samples = [1:1:length(MM_Pleister5_4uur(49:end, :))];
+samples = [1:1:length(MM_Pleister5_4uur(48:end, :))];
 
-% determining median mitoPO2
-max_MM_Pleister5_4uur = median(MM_Pleister5_4uur(49,:));
-max_MM_Pleister6_5uur = median(MM_Pleister6_5uur(49,:));
-max_MM_Pleister7_6uur = median(MM_Pleister7_6uur(49,:));
-max_MM_Pleister8_7uur = median(MM_Pleister8_7uur(49,:));
-max_MM_Pleister9_8uur = median(MM_Pleister9_8uur(49,:));
-max_MM_Pleister10_9uur = median(MM_Pleister10_9uur(49,:));
-max_MM_Pleister11_10uur = median(MM_Pleister11_10uur(49,:));
+%% determining median mitoPO2
+max_MM_Pleister5_4uur = median(MM_Pleister5_4uur(48,:));
+max_MM_Pleister6_5uur = median(MM_Pleister6_5uur(48,:));
+max_MM_Pleister7_6uur = median(MM_Pleister7_6uur(48,:));
+max_MM_Pleister8_7uur = median(MM_Pleister8_7uur(48,:));
+max_MM_Pleister9_8uur = median(MM_Pleister9_8uur(48,:));
+max_MM_Pleister10_9uur = median(MM_Pleister10_9uur(48,:));
+max_MM_Pleister11_10uur = median(MM_Pleister11_10uur(48,:));
 
-max_MM_Pleister2_13uur = median(MM_Pleister2_13uur(49,:));
-max_MM_Pleister3_14uur = median(MM_Pleister3_14uur(49,:));
-max_MM_Pleister4_15uur = median(MM_Pleister4_15uur(49,:));
+max_MM_Pleister2_13uur = median(MM_Pleister2_13uur(48,:));
+max_MM_Pleister3_14uur = median(MM_Pleister3_14uur(48,:));
+max_MM_Pleister4_15uur = median(MM_Pleister4_15uur(48,:));
 
-max_MM_Pleister3_16uur = median(MM_Pleister3_16uur(49,:));
-max_MM_Pleister4_17uur = median(MM_Pleister4_17uur(49,:));
+max_MM_Pleister3_16uur = median(MM_Pleister3_16uur(48,:));
+max_MM_Pleister4_17uur = median(MM_Pleister4_17uur(48,:));
 
-max_MM_Pleister3_18uur = median(MM_Pleister3_18uur(49,:));
-max_MM_Pleister4_19uur = median(MM_Pleister4_19uur(49,:));
+max_MM_Pleister3_18uur = median(MM_Pleister3_18uur(48,:));
+max_MM_Pleister4_19uur = median(MM_Pleister4_19uur(48,:));
 
 mean_MM_BGS_25 = mean([mean_MM_BGS_2(1) mean_MM_BGS_3(1)]);
 mean_MM_BGS_35 = mean([mean_MM_BGS_3(1) mean_MM_BGS_4(1)]);
